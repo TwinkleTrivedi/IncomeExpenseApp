@@ -75,11 +75,16 @@ struct ContentView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
-                ToolbarItem {
+                ToolbarItem(placement: .bottomBar) {
+                          Spacer()
+                      }
+                ToolbarItem(placement: .bottomBar) {
                     Button(action: {
                                        self.addsubview = true
                                    }) {
-                                       Label("Add Item", systemImage: "plus")
+                                       Image(systemName: "plus.circle.fill")
+                                                                          .imageScale(.large)
+                                                                          .font(.title)
                                    }
 
                 }
