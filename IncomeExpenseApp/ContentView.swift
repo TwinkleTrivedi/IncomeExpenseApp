@@ -56,10 +56,10 @@ struct ContentView: View {
                         }.padding()
                         VStack{
                             if item.intTransactionType == 0{
-                                Text("\(item.amount)")
+                                Text("$\(item.amount, specifier: "%.2f")")
                             }
                             else{
-                                Text("- \(item.amount)")
+                                Text("- $\(item.amount, specifier: "%.2f")")
                             }
                         
                         }.padding() .frame(maxWidth: .infinity, alignment: .trailing)
@@ -102,21 +102,23 @@ struct ContentView: View {
                                                Picker("Transaction Type", selection: $selectedttypeindex, content: {
                                                              ForEach(0..<transactionTP.count, content: { index in
                                                                  Text(transactionTP[index])
+                                                                 
                                                              })
                                                          })
                                                .frame(width: 150, height: 100)
-                                               .clipped()
+                                               .clipped().padding()
                                                TextField("Transaction Descripetion", text: $transactionDescription)
                                                    .textFieldStyle(RoundedBorderTextFieldStyle()).padding()
                                                if selectedttypeindex == 0{
-                                                   TextField("$", text: $amount)
+                                                   TextField("$ Amount", text: $amount) .keyboardType(.numberPad)
                                                        .textFieldStyle(RoundedBorderTextFieldStyle()).padding()
                                                }
                                                else
                                                {
-                                                   TextField("$ - ", text: $amount)
+                                                   TextField("- $Amount ", text: $amount) .keyboardType(.numberPad)
                                                        .textFieldStyle(RoundedBorderTextFieldStyle()).padding()
                                                }
+                                               
                                              
                                            }
                                        }
@@ -132,15 +134,24 @@ struct ContentView: View {
                                            
                                        }){
                                            Text("Add")
+                                           
                                        } .padding()
+                                               .background(Color.cyan)
+                                               .frame(width:90,height: 30)
+                                               .mask(RoundedRectangle(cornerRadius: 5))
+                                               .shadow(radius: 20)
                                        Button(action: {
                                                self.addsubview = false
                                        }){
                                            Text("Cancel")
                                        } .padding()
-                                       }
+                                               .background(Color.cyan)
+                                               .frame(width:90,height: 30)
+                                               .mask(RoundedRectangle(cornerRadius: 5))
+                                               .shadow(radius: 20)
+                                       }.padding()
                                    }
-                                   .frame(width:300, height: 500)
+                                   .frame(width:300, height: 650)
                                    .background(Color.white)
                                    .mask(RoundedRectangle(cornerRadius: 20))
                                    .shadow(radius: 20)
