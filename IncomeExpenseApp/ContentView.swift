@@ -42,6 +42,9 @@ struct ContentView: View {
             List {
                 ForEach(items) { item in
                     HStack{
+                        Text(item.timestamp!, formatter: itemFormatter)
+                        }.padding()
+                    HStack{
                         VStack{
                         Text(item.transactionDesc!)
                         }.padding()
@@ -196,7 +199,6 @@ struct ContentView: View {
 private let itemFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .short
-    formatter.timeStyle = .medium
     return formatter
 }()
 
