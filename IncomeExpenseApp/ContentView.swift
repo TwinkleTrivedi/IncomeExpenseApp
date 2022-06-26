@@ -20,6 +20,10 @@ struct ContentView: View {
     @State var TotalExpense = 0.0
     @State var Difference = 0.0
     @State var percentage:Double = 0.0
+    let calendar = Calendar.current
+    @State var counter=0
+    @State var todaydate=""
+
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
@@ -40,10 +44,12 @@ struct ContentView: View {
         }
         NavigationView {
             List {
+                HStack{
+                    Text(todaydate)
+                }.padding()
+
                 ForEach(items) { item in
-                    HStack{
-                        Text(item.timestamp!, formatter: itemFormatter)
-                        }.padding()
+                        
                     HStack{
                         VStack{
                         Text(item.transactionDesc!)
@@ -58,6 +64,8 @@ struct ContentView: View {
                         
                         }.padding() .frame(maxWidth: .infinity, alignment: .trailing)
 
+                    }.onAppear{
+                        checkDate(item.timestamp!)
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -157,7 +165,18 @@ struct ContentView: View {
         print(percentage)
      
     }
-    
+     func checkDate(_ date:Date) {
+        if calendar.isDateInToday(date)  {
+            counter=counter+1
+            todaydate=" \(itemFormatter.string(from: date))"
+            
+            print(date)
+        }
+        else{
+            counter=0
+        }
+      
+    }
 
     private func addItem() {
         
@@ -196,9 +215,10 @@ struct ContentView: View {
     }
 }
 
+
 private let itemFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateStyle = .short
+    formatter.dateStyle = .medium
     return formatter
 }()
 
