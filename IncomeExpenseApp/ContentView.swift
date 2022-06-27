@@ -154,7 +154,7 @@ struct ContentView: View {
                                              
                                        }.padding()
                                    }
-                                   .frame(width:300, height: 650)
+                                   .frame(width:300, height: 550)
                                    .background(Color.white)
                                    .mask(RoundedRectangle(cornerRadius: 20))
                                    .shadow(radius: 20)
