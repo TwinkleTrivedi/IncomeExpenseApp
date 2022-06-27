@@ -45,7 +45,7 @@ struct ContentView: View {
         NavigationView {
             List {
                 HStack{
-                    Text(todaydate)
+                    Text(todaydate).bold()
                 }.padding()
 
                 ForEach(items) { item in
@@ -97,7 +97,6 @@ struct ContentView: View {
                                ZStack{
                                    Color.black.opacity(0.4)
                                        .edgesIgnoringSafeArea(.vertical)
-                                   // this one is it
                                    VStack(spacing: 5) {
                                        HStack {
     
@@ -109,8 +108,7 @@ struct ContentView: View {
                                                                  Text(transactionTP[index])
                                                                  
                                                              })
-                                                         })
-                                               .frame(width: 150, height: 100)
+                                               })
                                                .clipped().padding()
                                                TextField("Transaction Descripetion", text: $transactionDescription)
                                                    .textFieldStyle(RoundedBorderTextFieldStyle()).padding()
@@ -138,22 +136,22 @@ struct ContentView: View {
                                            }
                                            
                                        }){
-                                           Text("Add")
                                            
-                                       } .padding()
-                                               .background(Color.cyan)
-                                               .frame(width:90,height: 30)
-                                               .mask(RoundedRectangle(cornerRadius: 5))
-                                               .shadow(radius: 20)
+                                           Image(systemName: "plus.circle.fill")
+                                                                              .imageScale(.large)
+                                                                              .font(.title)
+                                       
+                                   } .padding()
                                        Button(action: {
                                                self.addsubview = false
                                        }){
-                                           Text("Cancel")
+                                           
+                                               Image(systemName: "xmark.octagon")
+                                                                                  .imageScale(.large)
+                                                                                  .font(.title)
+                                           
                                        } .padding()
-                                               .background(Color.cyan)
-                                               .frame(width:90,height: 30)
-                                               .mask(RoundedRectangle(cornerRadius: 5))
-                                               .shadow(radius: 20)
+                                             
                                        }.padding()
                                    }
                                    .frame(width:300, height: 650)
