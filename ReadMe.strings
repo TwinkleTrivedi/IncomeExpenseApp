@@ -1,0 +1,12 @@
+/* 
+  ReadMe.strings
+  IncomeExpenseApp
+
+  Created by Twinkle T on 2022-07-11.
+ 
+ ->Build app with Swift , swiftUI and Coredata
+ ->topview diplay income and expenses and balace
+ ->user can add income or expense and description of transaction then amount
+ -> click on edit you can delete the particular data
+  
+*/
